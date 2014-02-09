@@ -23,6 +23,9 @@ public class Player implements Comparable<Player>{
 	private PokerHand bestHand;
 
 	//initiate a player, set his name and give him a balance of 100
+	public Player(){
+		balance = 100.00f;
+	}
 	public Player(String name){
 		this.name = name;
 		balance = 100.00f;

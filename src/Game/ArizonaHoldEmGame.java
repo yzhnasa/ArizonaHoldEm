@@ -15,6 +15,7 @@ public class ArizonaHoldEmGame extends JFrame{
 		ArizonaHoldEmGame newGame = new ArizonaHoldEmGame();
 		newGame.setVisible(true);
 		newGame.gameBegin();
+		//newGame.setVisible(true);
 	}
 	
 	public void gameBegin(){
@@ -23,6 +24,12 @@ public class ArizonaHoldEmGame extends JFrame{
 		dealer.collectAntes(4);
 		dealer.getDeck().shuffle();
 		dealer.setCommunityCards();
-		rootPanel.setCommunityPanel(dealer.getCommunityCards());
+		rootPanel.setPotPanel(dealer.getCommunityCards());
+		//Player realPerson = new Player();
+		//realPerson.setCommunityCards(dealer);
+		//rootPanel.setRealPersonPanel(dealer.getTwoCards());
+		//rootPanel.setBotPanel1(dealer.getTwoCards());
+		//rootPanel.setBotPanel2(dealer.getTwoCards());
+		//rootPanel.setBotPanel3(dealer.getTwoCards());
 	}
 }

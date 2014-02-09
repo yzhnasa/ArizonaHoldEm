@@ -1,6 +1,4 @@
 package view;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -11,11 +9,11 @@ import javax.swing.JTextField;
 import ArizonaHoldEmLogic.Card;
 
 public class RootPanel extends JPanel {
-	protected JPanel panelOfPlayer;
-	protected JPanel panelOfBot1;
-	protected JPanel panelOfBot2;
-	protected JPanel panelOfBot3;
-	protected JPanel potPanel;
+	protected PlayerPanel realPersonPanel;
+	protected PlayerPanel botPanel1;
+	protected PlayerPanel botPanel2;
+	protected PlayerPanel botPanel3;
+	protected PotPanel potPanel;
 	private JPanel buttonPanel;
 	
 	private JButton newRound;
@@ -37,13 +35,13 @@ public class RootPanel extends JPanel {
 		initializePanels();
 		
 		add(new JPanel());
-		add(panelOfBot1);
+		add(botPanel1);
 		add(new JPanel());
-		add(panelOfBot2);
+		add(botPanel2);
 		add(potPanel);
-		add(panelOfBot3);
+		add(botPanel3);
 		add(new JPanel());
-		add(panelOfPlayer);
+		add(realPersonPanel);
 		add(buttonPanel);
 	}
 	
@@ -54,11 +52,6 @@ public class RootPanel extends JPanel {
 		initializePanelOfBot3();
 		initializePanelOfPot();
 		initializeButtonPanel();
-	}
-
-	private void initializePanelOfPot() {
-		potPanel = new JPanel();
-		
 	}
 
 	private void initializeButtonPanel() {
@@ -74,67 +67,64 @@ public class RootPanel extends JPanel {
 		buttonPanel.add(fold);
 	}
 
-	private void setPotPanel(ArrayList<Card> communityCards) {
-		potPanel = new potPanel(communityCards);
-		
+	private void initializePanelOfPot() {
+		//potPanel = new JPanel();
+		potPanel = new PotPanel();
+		potPanel.setLayout(new GridLayout(1, 2));
 	}
 	
-	private JPanel getpotPanel(){
-		return potPanel;
-	}
-
 	private void initializePanelOfBot3() {
-		panelOfBot3 = new JPanel();
-		panelOfBot3.setLayout(new GridLayout(1, 2));
+		botPanel3 = new PlayerPanel();
+		botPanel3.setLayout(new GridLayout(1, 2));
 	}
 	
 
 	private void initializePanelOfBot2() {
-		panelOfBot1 = new JPanel();
-		panelOfBot1.setLayout(new GridLayout(1, 2));
+		botPanel1 = new PlayerPanel();
+		botPanel1.setLayout(new GridLayout(1, 2));
 	}
 
 	private void initializePanelOfBot1() {
-		panelOfBot2 = new JPanel();
-		panelOfBot2.setLayout(new GridLayout(1, 2));
+		botPanel2 = new PlayerPanel();
+		botPanel2.setLayout(new GridLayout(1, 2));
 	}
 
 	private void initializePanelOfPlayer() {
-		panelOfPlayer = new JPanel();
-		panelOfPlayer.setLayout(new GridLayout(1, 2));
+		realPersonPanel = new PlayerPanel();
+		realPersonPanel.setLayout(new GridLayout(1, 2));
 		panelCard card1 = new panelCard();
 		panelCard card2 = new panelCard();
-		panelOfPlayer.add(card1);
-		panelOfPlayer.add(card2);
+		realPersonPanel.add(card1);
+		realPersonPanel.add(card2);
 		
+	}
+	
+
+	public void setPotPanel(ArrayList<Card> communityCards) {
+		//potPanel = new PotPanel(communityCards);
+		//potPanel.setVisible(true);
+		potPanel.setPotPanelCards(communityCards);
+		potPanel.repaint();
+		//potPanel.validate();
+	}
+	
+	public void setRealPersonPanel(ArrayList<Card> twoCards){
+		realPersonPanel.setPlayerPanelCards(twoCards);
+		realPersonPanel.repaint();
 	}
 
-	public void setCommunityPanel(ArrayList<Card> communityCards) {
-		
-		
+	public void setBotPanel1(ArrayList<Card> twoCards) {
+		botPanel1.setPlayerPanelCards(twoCards);
+		botPanel1.repaint();
 	}
-	
-	public JPanel getPanelOfPlayer(){
-		return panelOfPlayer;
+
+	public void setBotPanel2(ArrayList<Card> twoCards) {
+		botPanel2.setPlayerPanelCards(twoCards);
+		botPanel2.repaint();
 	}
-	
-	public JPanel getpanelOfBot1(){
-		return panelOfBot1;
-	}
-	
-	public JPanel getpanelOfBot2(){
-		return panelOfBot2;
-	}
-	
-	public JPanel getpanelOfBot3(){
-		return panelOfBot3;
-	}
-	
-	public JPanel getPotPanel(){
-		return potPanel;
-	}
-	
-	public JPanel getButtonPanel(){
-		return buttonPanel;
+
+	public void setBotPanel3(ArrayList<Card> twoCards) {
+		botPanel3.setPlayerPanelCards(twoCards);
+		botPanel3.repaint();
 	}
 }
